@@ -8,7 +8,7 @@ class FactorGenerator:
         betas = pd.Series(index=time_label.iloc[window:])
         betas.name = 'betas'
         for i in range(window, sector_return_series.shape[0]):
-            regressor = (benchmark_series.iloc[i - window : i + 1]).reset_index(drop=True)
+            regressor = ((benchmark_series.iloc[i - window : i + 1]).reset_index(drop=True)) - 0.02
             response = (sector_return_series.iloc[i - window : i + 1]).reset_index(drop=True)
             regressor = sm.add_constant(regressor)
             model = sm.OLS(response, regressor).fit()
