@@ -20,6 +20,11 @@ class DataLoading:
         self._bond_data = bond_data.loc[bond_data.index >= init_date, ]
         self._market_data = market_data.loc[market_data.index >= init_date, ]
         self._macro_dict = {}
+        self._macro_indicators = {}
+
+        '''
+        key: grand_type, value: [index(datetime), zscore, sue, marginal_change]
+        '''
 
         self._pmi = None
         self._ppi = None
@@ -73,13 +78,15 @@ class DataLoading:
         return self._macro_dict
 
     def _set_a_share_index_erp(self):
-        return self._a_index_erp
+        a_share_ep = np.divide(1, self._market_data.iloc[:, ])
+        erp = a_share_ep - self._macro_dict["rate_10yr"]
+        return erp
+
 
     def _set_sp500_erp(self):
-        return self._sp500_erp
+        sp_500_erp = np.divide(1, self._market_data.iloc[:, ])
+        erp = sp_500_erp - self._macro_dict["rate_10yr"]
+        return erp
 
     def _set_sp500_vix(self):
-        return self._sp500_vix
-
-
-
+        return self._market_data.iloc[:, ]
